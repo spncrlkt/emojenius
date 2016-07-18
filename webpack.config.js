@@ -16,6 +16,11 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
+  resolve: {
+    extensions: ['', '.jsx', '.js', '.json'],
+    root: path.resolve(__dirname, 'src'),
+    modulesDirectories: ['node_modules']
+  },
   module: {
     loaders: [
       {
@@ -29,6 +34,10 @@ module.exports = {
         loaders: [ 'json' ],
         exclude: /node_modules/,
         include: __dirname
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
       }
     ]
   }
