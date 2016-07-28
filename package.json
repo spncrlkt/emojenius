@@ -28,6 +28,7 @@
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.2.1",
     "redux-thunk": "^1.0.3",
+    "reselect": "^2.5.3",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {

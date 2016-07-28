@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import {
+  logout,
+} from 'actions';
+
+import {
+  isLoggedIn,
+} from 'selectors/user';
+
 import AppBar from 'material-ui/lib/app-bar';
 import IconButton from 'material-ui/lib/icon-button';
 import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
@@ -7,18 +17,22 @@ import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import TextField from 'material-ui/lib/text-field';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
 
   onSignIn = () => {
     const signInURL = ENV.apiHost +
       '/login?next=' +
       encodeURIComponent(window.location.origin);
 
-    window.location.assign(signInURL)
+    window.location.assign(signInURL);
   }
 
   onSignOut = () => {
-    window.location.assign(ENV.apiHost + '/logout')
+    const {
+      logout,
+    } = this.props;
+
+    logout();
   }
 
   render() {
@@ -40,11 +54,11 @@ export default class Navbar extends Component {
           >
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Help" />
-            <MenuItem 
+            <MenuItem
               primaryText="Sign in"
               onTouchTap={ this.onSignIn }
               />
-            <MenuItem 
+            <MenuItem
               primaryText="Sign out"
               onTouchTap={ this.onSignOut }
               />
@@ -61,3 +75,20 @@ export default class Navbar extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    isLoggedIn: isLoggedIn(state),
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: bindActionCreators(logout, dispatch),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar)

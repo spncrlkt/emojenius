@@ -5,7 +5,12 @@ import {
 
 import { combineReducers } from 'redux'
 
-function twitter(state={}, action) {
+const initialState = {
+  userId: null,
+  userName: null,
+};
+
+function twitter(state=initialState, action) {
   switch (action.type) {
     case LOGIN:
       return Object.assign({}, state, {

@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux'
 import {
   fetchUser,
 } from 'actions';
+import {
+  isLoggedIn,
+} from 'selectors/user';
 
 
 class Login extends Component {
@@ -22,6 +25,7 @@ class Login extends Component {
     return (
       <div>
         <h2>LOGIN LOGIN LOGIN</h2>
+        <span>{ this.props.isLoggedIn ? 'YUP' : 'NOPE' }</span>
       </div>
     )
   }
@@ -29,6 +33,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
+    isLoggedIn: isLoggedIn(state),
   }
 }
 
