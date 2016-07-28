@@ -17,6 +17,7 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import App from './containers/App'
 import Butt from './containers/Butt'
+import Login from './containers/Login'
 
 const middleware = process.env.NODE_ENV === 'production' ?
   [ thunk ] :
@@ -36,6 +37,7 @@ render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
+        <Route path="login/:user_id" component={Login}/>
         <Route path="butt" component={Butt}/>
       </Route>
     </Router>

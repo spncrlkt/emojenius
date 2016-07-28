@@ -13,6 +13,9 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      ENV: require(path.join(__dirname, './env/dev.js'))
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],

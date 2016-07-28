@@ -45,3 +45,8 @@ npm-debug.log
 
 # IntelliJ IDE ignore
 .idea
+
+# env files
+env/dev.js
+env/staging.js
+env/prod.js

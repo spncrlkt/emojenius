@@ -1,5 +1,7 @@
-import shop from '../api/shop'
+import shop from '../api/shop' // RM
+
 import * as types from '../constants/ActionTypes'
+import fetch from 'isomorphic-fetch'
 
 function receiveProducts(products) {
   return {
@@ -46,5 +48,37 @@ export function checkout(products) {
       // Replace the line above with line below to rollback on failure:
       // dispatch({ type: types.CHECKOUT_FAILURE, cart })
     })
+  }
+}
+
+/********/
+export function login(userInfo) {
+  return {
+    type: types.LOGIN,
+    userInfo
+  }
+}
+
+export function logout() {
+  return {
+    type: types.LOGOUT
+  }
+}
+
+export function fetchUser(userId) {
+  return (dispatch) => {
+    fetch(`${ENV.apiHost}/user/${userId}`)
+      .then(response => {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then(json =>
+        dispatch(login(json))
+      )
+      .catch(function(ex) {
+        throw new Error(`Parsing failed: ${ex}`);
+      })
   }
 }
