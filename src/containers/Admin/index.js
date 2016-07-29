@@ -1,33 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 import {
-  fetchUser,
-} from 'actions/user';
+  fetchWords,
+} from 'actions/admin';
 
 import {
   isLoggedIn,
 } from 'selectors/user';
 
 
-class Login extends Component {
+class Admin extends Component {
   componentDidMount() {
     const {
-      params: {
-        user_id,
-      },
-      fetchUser,
+      fetchWords,
     } = this.props;
 
-    fetchUser(user_id);
+    fetchWords();
   }
 
   render() {
     return (
       <div>
-        <h2>LOGIN LOGIN LOGIN</h2>
-        <span>{ this.props.isLoggedIn ? 'YUP' : 'NOPE' }</span>
+        <h2>ADMIN</h2>
+        <span>Logged in: { this.props.isLoggedIn ? 'YUP' : 'NOPE' }</span>
       </div>
     )
   }
@@ -41,11 +37,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUser: bindActionCreators(fetchUser, dispatch),
+    fetchWords: bindActionCreators(fetchWords, dispatch),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Admin)

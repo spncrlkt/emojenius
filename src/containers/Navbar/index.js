@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
   logout,
-} from 'actions';
+} from 'actions/user';
 
 import {
   isLoggedIn,
@@ -36,6 +36,10 @@ class Navbar extends Component {
   }
 
   render() {
+    const {
+      isLoggedIn,
+    } = this.props;
+
     const searchFieldStyles = {
       width: 200,
       marginTop: 5,
@@ -54,14 +58,16 @@ class Navbar extends Component {
           >
             <MenuItem primaryText="Refresh" />
             <MenuItem primaryText="Help" />
-            <MenuItem
-              primaryText="Sign in"
-              onTouchTap={ this.onSignIn }
-              />
-            <MenuItem
-              primaryText="Sign out"
-              onTouchTap={ this.onSignOut }
-              />
+            { isLoggedIn ? 
+              <MenuItem
+                primaryText="Sign out"
+                onTouchTap={ this.onSignOut }
+                /> :
+              <MenuItem
+                primaryText="Sign in"
+                onTouchTap={ this.onSignIn }
+                />
+            }
           </IconMenu>
         }
         children= {[
