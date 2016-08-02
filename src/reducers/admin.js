@@ -4,14 +4,10 @@ import {
 
 import { combineReducers } from 'redux'
 
-const initialState = {};
-
-function words(state=initialState, action) {
+function words(state=[], action) {
   switch (action.type) {
     case LOAD_WORDS:
-      return Object.assign({}, state, {
-        words: action.words,
-      })
+      return action.words;
     default:
       return state
   }

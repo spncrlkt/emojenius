@@ -1,0 +1,8 @@
+.title {
+  cursor: pointer;
+}
+
+.open {
+  padding: 5px;
+  border: 2px solid black;
+}

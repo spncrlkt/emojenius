@@ -1,16 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {
-  fetchWords,
-} from 'actions/admin';
 
 import {
   isLoggedIn,
 } from 'selectors/user';
 
 
+import {
+  getWords,
+} from 'selectors/admin';
+
+import {
+  fetchWords,
+} from 'actions/admin';
+
+import {
+  addWord,
+  addDefinition,
+} from 'actions/word'
+
+import Words from 'components/Admin/Words/'
+
+
 class Admin extends Component {
+
   componentDidMount() {
     const {
       fetchWords,
@@ -20,10 +34,16 @@ class Admin extends Component {
   }
 
   render() {
+    const {
+      isLoggedIn,
+      ...rest,
+    } = this.props;
+
     return (
       <div>
         <h2>ADMIN</h2>
-        <span>Logged in: { this.props.isLoggedIn ? 'YUP' : 'NOPE' }</span>
+        <span>Logged in: { isLoggedIn ? 'YUP' : 'NOPE' }</span>
+        <Words { ...rest }/>
       </div>
     )
   }
@@ -32,12 +52,15 @@ class Admin extends Component {
 function mapStateToProps(state) {
   return {
     isLoggedIn: isLoggedIn(state),
+    words: getWords(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchWords: bindActionCreators(fetchWords, dispatch),
+    addWord: bindActionCreators(addWord, dispatch),
+    addDefinition: bindActionCreators(addDefinition, dispatch),
   }
 }
 

@@ -14,6 +14,7 @@ import { Router, Route, hashHistory } from 'react-router'
 import App from './containers/App'
 import Admin from './containers/Admin'
 import Login from './containers/Login'
+import Word from './containers/Word'
 
 const middleware = process.env.NODE_ENV === 'production' ?
   [ thunk ] :
@@ -33,6 +34,7 @@ render(
       <Route path="/" component={App}>
         <Route path="admin" component={Admin}/>
         <Route path="login/:user_id" component={Login}/>
+        <Route path="word/:title" component={Word}/>
       </Route>
     </Router>
   </Provider>,

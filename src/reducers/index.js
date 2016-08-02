@@ -3,12 +3,14 @@ import cart, * as fromCart from './cart'
 import products, * as fromProducts from './products'
 import user from './user'
 import admin from './admin'
+import word from './word'
 
 export default combineReducers({
   cart,
   products,
   user,
   admin,
+  word,
 })
 
 function getAddedIds(state) {

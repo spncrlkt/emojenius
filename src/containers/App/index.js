@@ -6,9 +6,11 @@ import styles from './styles.css';
 export default class App extends Component {
   render() {
     return (
-      <div className={ styles.content }>
+      <div>
         <Navbar />
-        { this.props.children }
+        <div className={ styles.content }>
+          { this.props.children }
+        </div>
       </div>
     )
   }
