@@ -12,6 +12,7 @@ import {
 } from 'actions/word';
 
 import WordComponent from 'components/Word';
+import Header from 'components/Word/Header';
 
 class Word extends Component {
 
@@ -29,8 +30,7 @@ class Word extends Component {
   render() {
     return (
       <div>
-        <h2>WORD</h2>
-        <h2>{ this.props.params.title }</h2>
+        <Header { ...this.props }/>
         <WordComponent { ...this.props }/>
       </div>
     )

@@ -11,7 +11,6 @@ export default class Word extends Component {
 
     return (
       <div>
-        { word && word.title } - { word && word.id }
         { word && <Definitions definitions={ word.definitions } { ...rest }/> }
       </div>
     );

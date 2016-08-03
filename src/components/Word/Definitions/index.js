@@ -15,9 +15,9 @@ export default class Definitions extends Component {
 
 
     return (
-      <ul>
+      <div>
         { renderedDefinitions }
-      </ul>
+      </div>
     );
   }
 }
