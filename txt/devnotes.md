@@ -1,11 +1,19 @@
 # localsonly
 
 ## todo
+- [ ] finish saga migration
 - [ ] admin add def as user
-- [ ] admin autofetch on add word/def - redux sagas
+
 - [ ] add def from word page
 - [ ] upvote/downvote action
+
+- [ ] my account page
+
 - [ ] search action
 - [ ] search results page
+
+- [ ] persist logged in status locally
+
+- [ ] rm admin stuff
 - [ ] create multiple twitter users
 - [ ] seed db script

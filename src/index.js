@@ -4,10 +4,16 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import reducer from './reducers'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
+
+const saga = createSagaMiddleware();
+
+import rootSaga from 'sagas';
+
 
 import { Router, Route, hashHistory } from 'react-router'
 
@@ -17,8 +23,8 @@ import Login from './containers/Login'
 import Word from './containers/Word'
 
 const middleware = process.env.NODE_ENV === 'production' ?
-  [ thunk ] :
-  [ thunk ]
+  [ thunk, saga ] :
+  [ thunk, saga ]
 
 const store = createStore(
   reducer,
@@ -27,6 +33,8 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 )
+
+saga.run(rootSaga);
 
 render(
   <Provider store={store}>

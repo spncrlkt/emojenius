@@ -1,4 +1,3 @@
-import * as types from 'constants/ActionTypes'
 import fetch from 'isomorphic-fetch'
 
 import {
@@ -6,34 +5,7 @@ import {
   getSelectedWord,
 } from 'selectors/word'
 
-export function setSelected(word) {
-  return {
-    type: types.SET_SELECTED_WORD,
-    word,
-  };
-}
-
-export function loadWord(word) {
-  return {
-    type: types.LOAD_WORD,
-    word,
-  };
-}
-
-export function addWord(word) {
-  return {
-    type: types.ADD_WORD,
-    word,
-  };
-}
-
-export function wordAdded() {
-  return {
-    type: types.WORD_ADDED,
-  };
-}
-
-export function fetchWord() {
+function fetchWord() {
   return (dispatch, getState) => {
     const state = getState();
     if (getSelectedWordData(state)) return;
@@ -57,8 +29,17 @@ export function fetchWord() {
   }
 }
 
+function addWord(word) {
+  return fetch(`${ENV.apiHost}/word/add/${word}`)
+  .then(response => {
+    if (response.status >= 400) {
+        throw new Error("Bad response from server");
+    }
+    return response.json();
+  })
+}
 
-export function addDefinition(word, definition) {
+function addDefinition(word, definition) {
   return (dispatch) => {
     fetch(
       `${ENV.apiHost}/word/${word}/definition`, {
@@ -87,3 +68,11 @@ export function addDefinition(word, definition) {
     });
   }
 }
+
+const wordApi = {
+  fetchWord,
+  addWord,
+  addDefinition,
+};
+
+export default wordApi;

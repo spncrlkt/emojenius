@@ -56,8 +56,6 @@ class Navbar extends Component {
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           >
-            <MenuItem primaryText="Refresh" />
-            <MenuItem primaryText="Help" />
             { isLoggedIn ? 
               <MenuItem
                 primaryText="Sign out"

@@ -13,7 +13,8 @@ export default class AddWord extends Component {
     this.setState({value: event.target.value});
   }
 
-  handleAddWord = () => {
+  handleAddWord = (event) => {
+    event.preventDefault();
     const {
       addWord,
     } = this.props;
