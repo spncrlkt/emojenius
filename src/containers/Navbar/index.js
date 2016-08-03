@@ -22,7 +22,7 @@ class Navbar extends Component {
   onSignIn = () => {
     const signInURL = ENV.apiHost +
       '/login?next=' +
-      encodeURIComponent(window.location.origin);
+      encodeURIComponent(window.location);
 
     window.location.assign(signInURL);
   }

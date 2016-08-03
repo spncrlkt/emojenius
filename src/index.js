@@ -33,7 +33,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={App}>
         <Route path="admin" component={Admin}/>
-        <Route path="login/:user_id" component={Login}/>
+        <Route path="login/:user_id/:next" component={Login}/>
         <Route path="word/:title" component={Word}/>
       </Route>
     </Router>

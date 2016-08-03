@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router';
+
+import CircularProgress from 'material-ui/lib/circular-progress';
+
+import styles from './styles.css';
 
 import {
   fetchUser,
@@ -23,11 +28,17 @@ class Login extends Component {
     fetchUser(user_id);
   }
 
+  componentWillReceiveProps(props) {
+    if (props.isLoggedIn) {
+      props.router.push(props.params.next)
+    }
+  }
+
   render() {
     return (
-      <div>
-        <h2>LOGIN LOGIN LOGIN</h2>
-        <span>{ this.props.isLoggedIn ? 'YUP' : 'NOPE' }</span>
+      <div className={ styles.container }>
+        <CircularProgress mode="indeterminate" size={2} />
+        <h2>Logging in</h2>
       </div>
     )
   }
@@ -48,4 +59,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(withRouter(Login))
