@@ -9,10 +9,12 @@ import {
 
 import {
   getWords,
+  getUsers,
 } from 'selectors/admin';
 
 import {
   fetchWords,
+  fetchUsers,
 } from 'actions/admin';
 
 import {
@@ -28,9 +30,11 @@ class Admin extends Component {
   componentDidMount() {
     const {
       fetchWords,
+      fetchUsers,
     } = this.props;
 
     fetchWords();
+    fetchUsers();
   }
 
   render() {
@@ -53,12 +57,14 @@ function mapStateToProps(state) {
   return {
     isLoggedIn: isLoggedIn(state),
     words: getWords(state),
+    users: getUsers(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchWords: bindActionCreators(fetchWords, dispatch),
+    fetchUsers: bindActionCreators(fetchUsers, dispatch),
     addWord: bindActionCreators(addWord, dispatch),
     addDefinition: bindActionCreators(addDefinition, dispatch),
   }

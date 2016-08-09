@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import UserDropdown from './UserDropdown';
+
 export default class AddDefinition extends Component {
 
   constructor() {
@@ -10,14 +12,20 @@ export default class AddDefinition extends Component {
   }
 
   handleChange =  (event) => {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
-  handleAddDefinition = () => {
+  handleUserChange = (userId) => {
+    this.setState({ selectedUser: userId });
+  }
+
+  handleAddDefinition = (event) => {
+    event.preventDefault();
     const {
       addDefinition,
+      title,
     } = this.props;
-    addDefinition(this.props.title, this.state.value);
+    addDefinition(title, this.state.value, this.state.selectedUser);
   }
 
   render() {
@@ -31,6 +39,9 @@ export default class AddDefinition extends Component {
           <button onClick={ this.handleAddDefinition }>
             add definition
           </button>
+          <UserDropdown
+            handleUserChange={ this.handleUserChange }
+            { ...this.props }/>
         </form>
       </div>
     );

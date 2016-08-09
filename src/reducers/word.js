@@ -8,9 +8,12 @@ import { combineReducers } from 'redux'
 function words(state={}, action) {
   switch (action.type) {
     case LOAD_WORD:
-      return Object.assign({}, state, {
-          [action.word.title]: action.word
-      });
+      if (action.word) {
+        return Object.assign({}, state, {
+            [action.word.title]: action.word
+        });
+      }
+      return state;
     default:
       return state;
   }

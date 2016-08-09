@@ -24,7 +24,7 @@ class Word extends Component {
     } = this.props;
 
     setSelected(params.title);
-    fetchWord();
+    fetchWord(params.title);
   }
 
   render() {

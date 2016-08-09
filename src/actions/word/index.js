@@ -1,10 +1,4 @@
 import * as types from 'constants/ActionTypes'
-import fetch from 'isomorphic-fetch'
-
-import {
-  getSelectedWordData,
-  getSelectedWord,
-} from 'selectors/word'
 
 export function setSelected(word) {
   return {
@@ -33,57 +27,20 @@ export function wordAdded() {
   };
 }
 
-export function fetchWord() {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (getSelectedWordData(state)) return;
-
-    const selectedWord = getSelectedWord(state);
-    if (!selectedWord) return;
-
-    fetch(`${ENV.apiHost}/word/${selectedWord}`)
-    .then(response => {
-      if (response.status >= 400) {
-          throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(json =>
-      dispatch(loadWord(json.word))
-    )
-    .catch(function(ex) {
-      throw new Error(`Parsing failed: ${ex}`);
-    });
-  }
+export function fetchWord(word) {
+  return {
+    type: types.FETCH_WORD,
+    word,
+  };
 }
 
+export function addDefinition(word, definition, userId) {
+  return {
+    type: types.ADD_DEFINITION,
+    word, definition, userId,
+  };
+}
 
-export function addDefinition(word, definition) {
-  return (dispatch) => {
-    fetch(
-      `${ENV.apiHost}/word/${word}/definition`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          definition,
-        })
-      }
-    )
-    .then(response => {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(json => {
-      console.log('addDefinition res: ' + JSON.stringify(json));
-      // return dispatch(fetchWords())
-    })
-    .catch(function(ex) {
-      throw new Error(`Parsing failed: ${ex}`);
-    });
-  }
+export function addDefinitionSuccess() {
+  return { type: types.ADD_DEFINITION_SUCCESS };
 }
