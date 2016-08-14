@@ -19,7 +19,7 @@ export default class ListItem extends Component {
 
   render() {
     const {
-      title,
+      word,
     } = this.props;
 
     const className = this.state.open ? styles.open : null;
@@ -29,7 +29,7 @@ export default class ListItem extends Component {
         <span
           className={ styles.title }
           onClick={ this.handleOpen }>
-            { title }
+            { word.get('title') }
         </span>
         { this.state.open && <WordDetail { ...this.props }/> }
       </li>

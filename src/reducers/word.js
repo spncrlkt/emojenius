@@ -1,19 +1,36 @@
 import {
   LOAD_WORD,
-  SET_SELECTED_WORD
+  SET_SELECTED_WORD,
+  ADD_VOTE,
 } from '../constants/ActionTypes'
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable'
+import Immutable from 'immutable';
 
-function words(state={}, action) {
+function words(state=Immutable.Map({}), action) {
   switch (action.type) {
     case LOAD_WORD:
       if (action.word) {
-        return Object.assign({}, state, {
-            [action.word.title]: action.word
-        });
+        return state.set(action.word.title, Immutable.fromJS(action.word));
       }
       return state;
+    case ADD_VOTE:
+      return state.updateIn(
+        [action.word, 'definitions', action.definitionId.toString()],
+        (definition) => {
+          let upvotes = definition.get('upvotes');
+          let downvotes = definition.get('downvotes');
+          if (action.isUpvote) {
+            upvotes++;
+          } else {
+            downvotes++;
+          }
+          return definition.merge({
+            upvotes,
+            downvotes,
+          });
+        }
+      );
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Header from 'components/Word/Header';
 import Definitions from './Definitions';
 
 export default class Word extends Component {
@@ -11,7 +12,9 @@ export default class Word extends Component {
 
     return (
       <div>
-        { word && <Definitions definitions={ word.definitions } { ...rest }/> }
+        <Header { ...this.props }/>
+        <br/>
+        { word && <Definitions { ...rest }/> }
       </div>
     );
   }

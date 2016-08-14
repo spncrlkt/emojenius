@@ -8,7 +8,7 @@ export default class Definition extends Component {
 
     return (
       <li>
-        { definition.definition } - { definition.id }
+        { definition.get('definition') } - { definition.get('id') }
       </li>
     );
   }

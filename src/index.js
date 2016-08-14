@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import logger from 'middleware/logger';
 import createSagaMiddleware from 'redux-saga'
 import reducer from './reducers'
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -23,8 +24,8 @@ import Login from './containers/Login'
 import Word from './containers/Word'
 
 const middleware = process.env.NODE_ENV === 'production' ?
-  [ thunk, saga ] :
-  [ thunk, saga ]
+  [ thunk, saga, logger ] :
+  [ thunk, saga, logger ]
 
 const store = createStore(
   reducer,

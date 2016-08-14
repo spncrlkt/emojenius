@@ -41,6 +41,23 @@ export function addDefinition(word, definition, userId) {
   };
 }
 
-export function addDefinitionSuccess() {
-  return { type: types.ADD_DEFINITION_SUCCESS };
+export function addDefinitionSuccess({ word }) {
+  return {
+    type: types.ADD_DEFINITION_SUCCESS,
+    word,
+  };
+}
+
+export function addVote(word, definitionId, userId, isUpvote) {
+  return {
+    type: types.ADD_VOTE,
+    word, definitionId, userId, isUpvote,
+  };
+}
+
+export function addVoteSuccess({definitionId, isUpvote}) {
+  return {
+    type: types.ADD_VOTE_SUCCESS,
+    definitionId, isUpvote,
+  };
 }

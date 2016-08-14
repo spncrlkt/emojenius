@@ -4,15 +4,22 @@ import { bindActionCreators } from 'redux'
 
 import {
   getSelectedWordData,
+  getDefinitions,
 } from 'selectors/word';
+
+import {
+  isLoggedIn,
+  userId,
+} from 'selectors/user';
 
 import {
   setSelected,
   fetchWord,
+  addDefinition,
+  addVote,
 } from 'actions/word';
 
 import WordComponent from 'components/Word';
-import Header from 'components/Word/Header';
 
 class Word extends Component {
 
@@ -30,16 +37,19 @@ class Word extends Component {
   render() {
     return (
       <div>
-        <Header { ...this.props }/>
         <WordComponent { ...this.props }/>
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  console.log('mstp');
   return {
     word: getSelectedWordData(state),
+    isLoggedIn: isLoggedIn(state),
+    userId: userId(state),
+    definitions: getDefinitions(state),
   }
 }
 
@@ -47,6 +57,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setSelected: bindActionCreators(setSelected, dispatch),
     fetchWord: bindActionCreators(fetchWord, dispatch),
+    addDefinition: bindActionCreators(addDefinition, dispatch),
+    addVote: bindActionCreators(addVote, dispatch),
   }
 }
 

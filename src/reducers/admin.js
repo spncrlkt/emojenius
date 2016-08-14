@@ -3,21 +3,22 @@ import {
   LOAD_USERS,
 } from '../constants/ActionTypes'
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable'
+import Immutable from 'immutable';
 
-function words(state=[], action) {
+function words(state=Immutable.List([]), action) {
   switch (action.type) {
     case LOAD_WORDS:
-      return action.words;
+      return Immutable.fromJS(action.words);
     default:
       return state
   }
 }
 
-function users(state=[], action) {
+function users(state=Immutable.List([]), action) {
   switch (action.type) {
     case LOAD_USERS:
-      return action.users;
+      return Immutable.fromJS(action.users);
     default:
       return state
   }

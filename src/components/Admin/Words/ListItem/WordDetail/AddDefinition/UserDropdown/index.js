@@ -6,8 +6,7 @@ export default class UserDropdown extends Component {
       handleUserChange,
       users,
     } = this.props;
-
-    handleUserChange(users[0].id);
+    handleUserChange(users.getIn([0, 'id']));
   }
 
   handleOnChange = (event) => {
@@ -25,7 +24,7 @@ export default class UserDropdown extends Component {
 
     const userOptions = users.map((user, index) => {
       return (
-        <option key={ index } value={ user.id }>{ user.name }</option>
+        <option key={ index } value={ user.get('id') }>{ user.get('name') }</option>
       );
     });
 

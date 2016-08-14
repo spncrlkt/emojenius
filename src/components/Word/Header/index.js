@@ -19,18 +19,21 @@ export default class Header extends Component {
 
   render() {
     const {
-      params
+      params,
+      isLoggedIn,
     } = this.props;
 
     return (
       <div className={ styles.container }>
-        <div
-          className={ styles.inner }
-          onTouchTap={ this.handleTouchTap }>
+        <div className={ styles.inner }>
           <Paper zDepth={ 2 }>
-            <div>
-              <h2>{ params.title }</h2>
-              { this.state.open && <AddDefinition /> }
+            <div className={ styles.container }>
+              <span
+                className={ styles.cursor }
+                onTouchTap={ this.handleTouchTap }>
+                <h2>{ params.title }</h2>
+              </span>
+              { isLoggedIn && this.state.open && <AddDefinition { ...this.props }/> }
             </div>
           </Paper>
         </div>

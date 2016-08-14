@@ -1,18 +1,22 @@
 # localsonly
 
 ## todo
-- [ ] finish saga migration
-- [ ] admin add def as user
+- [ ] delete definition action
+- [ ] order definitions by upvotes
 
-- [ ] add def from word page
-- [ ] upvote/downvote action
+- [ ] security
+- [ ] request tokens
+- [ ] secure login info fetch
 
+
+- [ ] logged in avi in menu bar
 - [ ] my account page
 
 - [ ] search action
 - [ ] search results page
+- [ ] add word if not exists
+- [ ] limit words to 1,2,3 emojis
 
-- [ ] persist logged in status locally
 
 - [ ] rm admin stuff
 - [ ] create multiple twitter users

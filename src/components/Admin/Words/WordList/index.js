@@ -3,7 +3,7 @@ import ListItem from '../ListItem'
 
 import styles from './styles.css'
 
-export default class Words extends Component {
+export default class WordList extends Component {
   render() {
     const {
       words,
@@ -11,7 +11,7 @@ export default class Words extends Component {
     } = this.props;
 
     const children = words ? words.map((word) => (
-      <ListItem key={ word.id } { ...word } { ...rest }/>
+      <ListItem key={ word.get('id') } word={ word } { ...rest }/>
     )) :
     [];
 

@@ -23,9 +23,9 @@ export default class AddDefinition extends Component {
     event.preventDefault();
     const {
       addDefinition,
-      title,
+      word,
     } = this.props;
-    addDefinition(title, this.state.value, this.state.selectedUser);
+    addDefinition(word.get('title'), this.state.value, this.state.selectedUser);
   }
 
   render() {

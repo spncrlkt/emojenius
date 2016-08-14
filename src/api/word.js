@@ -45,7 +45,34 @@ function addDefinition({ word, definition, userId }) {
     return response.json();
   })
   .then(json => {
-    console.log('addDefinition res: ' + JSON.stringify(json));
+    return json;
+  })
+  .catch(function(ex) {
+    throw new Error(`Parsing failed: ${ex}`);
+  });
+}
+
+function addVote({ definitionId, userId, isUpvote}) {
+  return fetch(
+    `${ENV.apiHost}/definition/${definitionId}/vote`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId,
+        isUpvote,
+      })
+    }
+  )
+  .then(response => {
+    if (response.status >= 400) {
+      throw new Error("Bad response from server");
+    }
+    return response.json();
+  })
+  .then(json => {
     return json;
   })
   .catch(function(ex) {
@@ -57,6 +84,7 @@ const wordApi = {
   fetchWord,
   addWord,
   addDefinition,
+  addVote,
 };
 
 export default wordApi;

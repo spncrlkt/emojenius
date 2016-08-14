@@ -7,8 +7,9 @@ import Definitions from './Definitions'
 export default class WordDetail extends Component {
   render() {
     const {
-      title,
+      word,
     } = this.props;
+    const title = word.get('title');
 
     return (
       <div>

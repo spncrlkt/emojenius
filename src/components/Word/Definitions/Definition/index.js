@@ -1,28 +1,34 @@
 import React, { Component } from 'react'
-import Avatar from 'material-ui/lib/avatar';
 import Card from 'material-ui/lib/card/card';
-import CardActions from 'material-ui/lib/card/card-actions';
 import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardTitle from 'material-ui/lib/card/card-title';
-import FlatButton from 'material-ui/lib/flat-button';
 import CardText from 'material-ui/lib/card/card-text';
 
+import ActionBar from './ActionBar';
 
-const Definition= ({ definition }) => (
-  <Card>
-    <CardHeader
-      title={ `${definition.user.name}` }
-      subtitle={ `@${definition.user.screen_name}` }
-      avatar={ definition.user.profile_image_url }/>
-    <CardText>
-      { definition.definition }
-    </CardText>
-    <CardActions>
-      <FlatButton label="Action1"/>
-      <FlatButton label="Action2"/>
-    </CardActions>
-  </Card>
-);
 
-export default Definition;
+export default class Definition extends Component {
+  render() {
+    const {
+      definition,
+      isLoggedIn,
+    } = this.props;
+
+    const userName = definition.getIn(['user', 'name']);
+    const screenName = definition.getIn(['user', 'screen_name']);
+    const profileImgUrl = definition.getIn(['user', 'profile_image_url']);
+    const definitionTxt = definition.get('definition');
+
+    return (
+      <Card>
+        <CardHeader
+          title={ userName }
+          subtitle={ `@${screenName}` }
+          avatar={ profileImgUrl }/>
+        <CardText>
+          { definitionTxt }
+        </CardText>
+        { isLoggedIn && <ActionBar { ...this.props }/> }
+      </Card>
+    )
+  }
+}

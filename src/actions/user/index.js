@@ -15,19 +15,14 @@ export function logout() {
 }
 
 export function fetchUser(userId) {
-  return (dispatch) => {
-    fetch(`${ENV.apiHost}/user/${userId}`)
-    .then(response => {
-      if (response.status >= 400) {
-          throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(json =>
-      dispatch(login(json))
-    )
-    .catch(function(ex) {
-      throw new Error(`Parsing failed: ${ex}`);
-    });
+  return {
+    type: types.FETCH_USER,
+    userId,
+  }
+}
+
+export function checkUserSession() {
+  return {
+    type: types.CHECK_USER_SESSION
   }
 }

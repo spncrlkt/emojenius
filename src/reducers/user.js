@@ -1,32 +1,57 @@
 import {
   LOGIN,
   LOGOUT,
-} from '../constants/ActionTypes'
+  ADD_VOTE,
+} from '../constants/ActionTypes';
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable';
+import Immutable from 'immutable';
 
-const initialState = {
+const twitterInitialState = Immutable.fromJS({
   userId: null,
   userName: null,
-};
+});
 
-function twitter(state=initialState, action) {
+const contentInitialState = Immutable.fromJS({
+  votes: {},
+  definitions: {},
+});
+
+
+function twitter(state=twitterInitialState, action) {
   switch (action.type) {
     case LOGIN:
-      return Object.assign({}, state, {
-        userId: action.userInfo.user_id,
-        userName: action.userInfo.screen_name,
-      })
+      return state.merge({
+        userId: action.userInfo.twitter.user_id,
+        userName: action.userInfo.twitter.screen_name,
+      });
     case LOGOUT:
-      return Object.assign({}, state, {
-        userId: null,
-        userName: null,
-      })
+      return twitterInitialState;
     default:
-      return state
+      return state;
+  }
+}
+
+function content(state=contentInitialState, action) {
+  switch (action.type) {
+    case LOGIN:
+      return state.merge({
+        votes: Immutable.Map(action.userInfo.votes),
+        definitions: Immutable.Map(action.userInfo.definitions),
+      });
+    case LOGOUT:
+      return contentInitialState;
+    case ADD_VOTE:
+      return state.setIn(
+          ['votes', action.definitionId.toString()],
+          action.isUpvote ? 1 : -1
+      );
+    default:
+      return state;
   }
 }
 
 export default combineReducers({
   twitter,
+  content,
 })
