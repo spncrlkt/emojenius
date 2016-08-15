@@ -23,9 +23,11 @@ import Admin from './containers/Admin'
 import Login from './containers/Login'
 import Word from './containers/Word'
 
+// available middleware
+// [ thunk, saga, logger ]
 const middleware = process.env.NODE_ENV === 'production' ?
-  [ thunk, saga, logger ] :
-  [ thunk, saga, logger ]
+  [ thunk, saga ] :
+  [ thunk, saga ]
 
 const store = createStore(
   reducer,

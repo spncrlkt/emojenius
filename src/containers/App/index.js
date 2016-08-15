@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import styles from './styles.css';
 import Navbar from 'containers/Navbar';
+import ErrorBar from 'containers/ErrorBar';
 
 import {
   checkUserSession,
@@ -35,6 +36,7 @@ class App extends Component {
         <div className={ styles.content }>
           { this.props.children }
         </div>
+        <ErrorBar />
       </div>
     )
   }

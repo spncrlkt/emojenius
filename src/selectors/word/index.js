@@ -33,9 +33,10 @@ export const getDefinitions = createSelector(
       return [];
     }
     const definitions = selectedWordDefinitions.map((definition) => {
-      if (votes.get(definition.get('id').toString()) == 1) {
+      const vote = votes.get(definition.get('id').toString());
+      if (vote == 1) {
         definition = definition.set('userUpvoted', true);
-      } else {
+      } else if (vote == -1) {
         definition = definition.set('userDownvoted', true);
       }
       if (userDefinitions.has(definition.get('id').toString())) {

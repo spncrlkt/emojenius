@@ -22,6 +22,9 @@ function addWord(word) {
     }
     return response.json();
   })
+  .catch(function(ex) {
+    throw new Error(`Parsing failed: ${ex}`);
+  });
 }
 
 function addDefinition({ word, definition, userId }) {
@@ -45,11 +48,38 @@ function addDefinition({ word, definition, userId }) {
     return response.json();
   })
   .then(json => {
+    if (json.error) {
+      throw new Error(json.error)
+    }
     return json;
   })
-  .catch(function(ex) {
-    throw new Error(`Parsing failed: ${ex}`);
-  });
+}
+
+function deleteDefinition({ word, definitionId, userId }) {
+  return fetch(
+    `${ENV.apiHost}/word/${word}/definition/${definitionId}/delete`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId,
+      })
+    }
+  )
+  .then(response => {
+    if (response.status >= 400) {
+      throw new Error("Bad response from server");
+    }
+    return response.json();
+  })
+  .then(json => {
+    if (json.error) {
+      throw new Error(json.error)
+    }
+    return json;
+  })
 }
 
 function addVote({ definitionId, userId, isUpvote}) {
@@ -73,17 +103,18 @@ function addVote({ definitionId, userId, isUpvote}) {
     return response.json();
   })
   .then(json => {
+    if (json.error) {
+      throw new Error(json.error)
+    }
     return json;
   })
-  .catch(function(ex) {
-    throw new Error(`Parsing failed: ${ex}`);
-  });
 }
 
 const wordApi = {
   fetchWord,
   addWord,
   addDefinition,
+  deleteDefinition,
   addVote,
 };
 

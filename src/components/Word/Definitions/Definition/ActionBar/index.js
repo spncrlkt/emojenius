@@ -9,6 +9,13 @@ import Colors from 'material-ui/lib/styles/colors';
 
 
 export default class ActionBar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      deleting: false,
+    };
+  }
+
   handleUpvote = () => this.handleVote(true)
   handleDownvote = () => this.handleVote(false)
 
@@ -22,41 +29,75 @@ export default class ActionBar extends Component {
     addVote(params.title, definition.get('id'), userId, isUpvote)
   }
 
+  handleDelete = () => {
+    if (this.state.deleting) {
+      const {
+        definition,
+        deleteDefinition,
+        userId,
+        params,
+      } = this.props;
+      console.log('deletin 4 real');
+      deleteDefinition(params.title, definition.get('id'), userId)
+    } else {
+      this.setState({ deleting: true });
+    }
+  }
+
   render() {
     const {
       definition,
     } = this.props;
 
+    const upvotes = definition.get('upvotes');
+    const userUpvoted = definition.get('userUpvoted');
+    const downvotes = definition.get('downvotes');
+    const userDownvoted = definition.get('userDownvoted');
+    const userOwns = definition.get('userOwns');
+
+    const deleteButton = userOwns ?
+      <IconButton
+        tooltip="DELETE"
+        onTouchTap={ this.handleDelete }>
+        <FontIcon
+          color={ this.state.deleting ? Colors.red500 : ''}
+          className="material-icons">
+          { this.state.deleting ? 'delete_forever' : 'delete' }
+        </FontIcon>
+      </IconButton> :
+      <div/>;
+
     return (
       <CardActions>
         <Badge
-          badgeContent={ definition.get('upvotes') }
+          badgeContent={ upvotes }
           badgeStyle={{top: 16, right: 16}}
           primary={true}>
           <IconButton
             tooltip="YA"
             onTouchTap={ this.handleUpvote }>
             <FontIcon
-              color={ definition.get('userUpvoted') ? Colors.cyan500 : ''}
+              color={ userUpvoted ? Colors.cyan500 : ''}
               className="material-icons">
               thumb_up
             </FontIcon>
           </IconButton>
         </Badge>
         <Badge
-          badgeContent={ definition.get('downvotes')}
+          badgeContent={ downvotes}
           badgeStyle={{top: 16, right: 16}}
           primary={true}>
           <IconButton
             tooltip="NAW"
             onTouchTap={ this.handleDownvote }>
             <FontIcon
-              color={ definition.get('userDownvoted') ? Colors.red500 : ''}
+              color={ userDownvoted ? Colors.red500 : ''}
               className="material-icons">
               thumb_down
             </FontIcon>
           </IconButton>
         </Badge>
+        { deleteButton }
       </CardActions>
     )
   }

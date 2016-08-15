@@ -16,6 +16,10 @@ import {
 } from 'actions/user';
 
 import {
+  setError,
+} from 'actions/error';
+
+import {
   getSelectedWord,
 } from 'selectors/word';
 
@@ -28,6 +32,7 @@ import {
   FETCH_WORD,
   ADD_DEFINITION,
   ADD_DEFINITION_SUCCESS,
+  DELETE_DEFINITION,
   ADD_VOTE,
   ADD_VOTE_SUCCESS,
 } from 'constants/ActionTypes';
@@ -51,8 +56,16 @@ export function* watchFetchWord() {
 }
 
 function* addDefinition(action) {
-  yield call(wordApi.addDefinition, action);
-  yield put(addDefinitionSuccess(action));
+  try {
+    const res = yield call(wordApi.addDefinition, action);
+    const successAction = Object.assign({}, action, {
+      definitionId: res.definition.id,
+    });
+    yield put(addDefinitionSuccess(successAction));
+  }
+  catch (error) {
+    yield put(setError(error.message));
+  }
 }
 
 export function* watchAddDefinition() {
@@ -63,9 +76,29 @@ export function* watchAddDefinitionSuccess() {
   yield* takeEvery(ADD_DEFINITION_SUCCESS, fetchWord)
 }
 
+function* deleteDefinition(action) {
+  try {
+    yield call(wordApi.deleteDefinition, action);
+    yield put(fetchWordAction(action.word));
+  }
+  catch (error) {
+    yield put(setError(error.message));
+  }
+}
+
+export function* watchDeleteDefinition() {
+  yield* takeEvery(DELETE_DEFINITION, deleteDefinition)
+}
+
+
 function* addVote(action) {
-  yield call(wordApi.addVote, action);
-  yield put(addVoteSuccessAction(action));
+  try {
+    yield call(wordApi.addVote, action);
+    yield put(addVoteSuccessAction(action));
+  }
+  catch (error) {
+    yield put(setError(error.message));
+  }
 }
 
 export function* watchAddVote() {

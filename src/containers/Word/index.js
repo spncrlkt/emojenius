@@ -16,6 +16,7 @@ import {
   setSelected,
   fetchWord,
   addDefinition,
+  deleteDefinition,
   addVote,
 } from 'actions/word';
 
@@ -58,6 +59,7 @@ function mapDispatchToProps(dispatch) {
     setSelected: bindActionCreators(setSelected, dispatch),
     fetchWord: bindActionCreators(fetchWord, dispatch),
     addDefinition: bindActionCreators(addDefinition, dispatch),
+    deleteDefinition: bindActionCreators(deleteDefinition, dispatch),
     addVote: bindActionCreators(addVote, dispatch),
   }
 }

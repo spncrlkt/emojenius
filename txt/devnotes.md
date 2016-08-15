@@ -1,7 +1,6 @@
 # localsonly
 
 ## todo
-- [ ] delete definition action
 - [ ] order definitions by upvotes
 
 - [ ] security

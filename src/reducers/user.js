@@ -2,6 +2,7 @@ import {
   LOGIN,
   LOGOUT,
   ADD_VOTE,
+  ADD_DEFINITION_SUCCESS,
 } from '../constants/ActionTypes';
 
 import { combineReducers } from 'redux-immutable';
@@ -46,6 +47,11 @@ function content(state=contentInitialState, action) {
           ['votes', action.definitionId.toString()],
           action.isUpvote ? 1 : -1
       );
+    case ADD_DEFINITION_SUCCESS:
+      return state.setIn(
+          ['definitions', action.definitionId.toString()],
+          action.definition
+       );
     default:
       return state;
   }

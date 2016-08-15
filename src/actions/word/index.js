@@ -41,10 +41,17 @@ export function addDefinition(word, definition, userId) {
   };
 }
 
-export function addDefinitionSuccess({ word }) {
+export function addDefinitionSuccess({ word, definition, definitionId }) {
   return {
     type: types.ADD_DEFINITION_SUCCESS,
-    word,
+    word, definition, definitionId,
+  };
+}
+
+export function deleteDefinition(word, definitionId, userId) {
+  return {
+    type: types.DELETE_DEFINITION,
+    word, definitionId, userId,
   };
 }
 

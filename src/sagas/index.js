@@ -10,6 +10,7 @@ import {
   watchFetchWord,
   watchAddDefinition,
   watchAddDefinitionSuccess,
+  watchDeleteDefinition,
   watchAddVote,
   watchAddVoteSuccess,
 } from './word';
@@ -30,6 +31,7 @@ export default function* rootSaga() {
     watchFetchWord(),
     watchAddDefinition(),
     watchAddDefinitionSuccess(),
+    watchDeleteDefinition(),
     watchAddVote(),
     watchAddVoteSuccess(),
     watchFetchUser(),
