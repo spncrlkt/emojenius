@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { withRouter } from 'react-router';
 
 import CircularProgress from 'material-ui/lib/circular-progress';
 
@@ -20,12 +20,13 @@ class Login extends Component {
   componentDidMount() {
     const {
       params: {
-        user_id,
+        userId,
+        authToken,
       },
       fetchUser,
     } = this.props;
 
-    fetchUser(user_id);
+    fetchUser(userId, authToken);
   }
 
   componentWillReceiveProps(props) {

@@ -12,8 +12,8 @@ function getUserFromSession() {
   return sessionStorage.user && JSON.parse(sessionStorage.user);
 }
 
-function fetchUser({ userId }) {
-  return fetch(`${ENV.apiHost}/user/${userId}`)
+function fetchUser({ userId, authToken }) {
+  return fetch(`${ENV.apiHost}/user/${userId}/${authToken}`)
   .then(response => {
     if (response.status >= 400) {
         throw new Error("Bad response from server");

@@ -8,6 +8,10 @@ export const userId = (state) => {
   return state.getIn(['user', 'twitter', 'userId']);
 }
 
+export const authToken = (state) => {
+  return state.getIn(['user', 'twitter', 'authToken']);
+}
+
 export const votes = (state) => {
   return state.getIn(['user', 'content', 'votes']);
 }

@@ -25,6 +25,7 @@ import {
 
 import {
   userId as selectUserId,
+  authToken as selectAuthToken,
 } from 'selectors/user';
 
 import {
@@ -38,8 +39,13 @@ import {
 } from 'constants/ActionTypes';
 
 function* addWord(action) {
-  const word = yield call(wordApi.addWord, action.word);
-  yield put(wordAdded());
+  try {
+    const word = yield call(wordApi.addWord, action.word);
+    yield put(wordAdded());
+  }
+  catch (error) {
+    yield put(setError(error.message));
+  }
 }
 
 export function* watchAddWord() {
@@ -108,8 +114,9 @@ export function* watchAddVote() {
 function* addVoteSuccess() {
   const selectedWord = yield select(getSelectedWord);
   const userId = yield select(selectUserId);
+  const authToken = yield select(selectAuthToken);
   yield put(fetchWordAction(selectedWord));
-  yield put(fetchUser(userId));
+  yield put(fetchUser(userId, authToken));
 }
 
 export function* watchAddVoteSuccess() {

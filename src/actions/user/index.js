@@ -14,10 +14,10 @@ export function logout() {
   }
 }
 
-export function fetchUser(userId) {
+export function fetchUser(userId, authToken) {
   return {
     type: types.FETCH_USER,
-    userId,
+    userId, authToken
   }
 }
 

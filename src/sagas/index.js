@@ -21,6 +21,10 @@ import {
   watchCheckUserSession,
 } from './user';
 
+import {
+  watchSearch,
+} from './search';
+
 export default function* rootSaga() {
   yield [
     watchFetchWords(),
@@ -37,5 +41,6 @@ export default function* rootSaga() {
     watchFetchUser(),
     watchLogout(),
     watchCheckUserSession(),
+    watchSearch(),
   ]
 }

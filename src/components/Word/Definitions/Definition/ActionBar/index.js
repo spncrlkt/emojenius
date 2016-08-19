@@ -23,10 +23,9 @@ export default class ActionBar extends Component {
     const {
       definition,
       addVote,
-      userId,
       params,
     } = this.props;
-    addVote(params.title, definition.get('id'), userId, isUpvote)
+    addVote(params.title, definition.get('id'), isUpvote)
   }
 
   handleDelete = () => {
@@ -34,11 +33,10 @@ export default class ActionBar extends Component {
       const {
         definition,
         deleteDefinition,
-        userId,
         params,
       } = this.props;
       console.log('deletin 4 real');
-      deleteDefinition(params.title, definition.get('id'), userId)
+      deleteDefinition(params.title, definition.get('id'))
     } else {
       this.setState({ deleting: true });
     }

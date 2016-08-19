@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
@@ -17,6 +18,7 @@ import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import TextField from 'material-ui/lib/text-field';
 
+
 class Navbar extends Component {
 
   onSignIn = () => {
@@ -33,6 +35,15 @@ class Navbar extends Component {
     } = this.props;
 
     logout();
+  }
+
+  navAdmin = () => {
+    const {
+      router,
+    } = this.props;
+
+    debugger;
+    router.push('/admin');
   }
 
   render() {
@@ -66,6 +77,9 @@ class Navbar extends Component {
                 onTouchTap={ this.onSignIn }
                 />
             }
+            <MenuItem
+              primaryText="ADMIN"
+              onTouchTap={ this.navAdmin }/>
           </IconMenu>
         }
         children= {[
@@ -95,4 +109,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navbar)
+)(withRouter(Navbar))

@@ -17,6 +17,7 @@ import {
 
 function* fetchUser(action) {
   const user =  yield call(userApi.fetchUser, action);
+  user.twitter.authToken = action.authToken;
   yield call(userApi.storeUserInSession, user);
   yield put(login(user));
 }
@@ -37,7 +38,7 @@ export function* checkUserSession() {
   const user = userApi.getUserFromSession();
   if (user) {
     yield put(login(user));
-    yield put(fetchUserAction(user.twitter.user_id));
+    yield put(fetchUserAction(user.twitter.userId, user.twitter.authToken));
   }
 }
 

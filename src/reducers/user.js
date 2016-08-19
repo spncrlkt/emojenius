@@ -11,6 +11,7 @@ import Immutable from 'immutable';
 const twitterInitialState = Immutable.fromJS({
   userId: null,
   userName: null,
+  authToken: null,
 });
 
 const contentInitialState = Immutable.fromJS({
@@ -23,8 +24,9 @@ function twitter(state=twitterInitialState, action) {
   switch (action.type) {
     case LOGIN:
       return state.merge({
-        userId: action.userInfo.twitter.user_id,
-        userName: action.userInfo.twitter.screen_name,
+        userId: action.userInfo.twitter.userId,
+        userName: action.userInfo.twitter.screenName,
+        authToken: action.userInfo.twitter.authToken,
       });
     case LOGOUT:
       return twitterInitialState;

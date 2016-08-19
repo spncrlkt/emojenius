@@ -18,10 +18,9 @@ export default class AddDefinition extends Component {
     const {
       addDefinition,
       word,
-      userId,
     } = this.props;
 
-    addDefinition(word.get('title'), this.state.value, userId);
+    addDefinition(word.get('title'), this.state.value);
     this.setState({ value: '' });
   }
 

@@ -1,22 +1,20 @@
 # localsonly
 
 ## todo
-- [ ] order definitions by upvotes
 
-- [ ] security
-- [ ] request tokens
-- [ ] secure login info fetch
-
-
-- [ ] logged in avi in menu bar
-- [ ] my account page
-
+### short
 - [ ] search action
-- [ ] search results page
-- [ ] add word if not exists
-- [ ] limit words to 1,2,3 emojis
+- [ ] search results page (if found)
+
+- [ ] order definitions by upvotes
+- [ ] landing page
+
 
 
 - [ ] rm admin stuff
+- [ ] admin separate addDefinition
+
+- [ ] logged in avi in menu bar
+- [ ] my account page
 - [ ] create multiple twitter users
 - [ ] seed db script

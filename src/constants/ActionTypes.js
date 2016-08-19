@@ -23,6 +23,10 @@ export const DELETE_DEFINITION_SUCCESS = 'DELETE_DEFINITION_SUCCESS';
 export const ADD_VOTE = 'ADD_VOTE';
 export const ADD_VOTE_SUCCESS = 'ADD_VOTE_SUCCESS';
 
+/* SEARCH */
+export const SEARCH = 'SEARCH';
+export const LOAD_SEARCH_RESULTS = 'LOAD_SEARCH_RESULTS';
+
 /* ERROR */
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';

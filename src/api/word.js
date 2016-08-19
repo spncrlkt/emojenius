@@ -22,12 +22,15 @@ function addWord(word) {
     }
     return response.json();
   })
-  .catch(function(ex) {
-    throw new Error(`Parsing failed: ${ex}`);
-  });
+  .then(json => {
+    if (json.error) {
+      throw new Error(json.error)
+    }
+    return json;
+  })
 }
 
-function addDefinition({ word, definition, userId }) {
+function addDefinition({ word, definition, userId, authToken }) {
   return fetch(
     `${ENV.apiHost}/word/${word}/definition`, {
       method: 'POST',
@@ -38,6 +41,7 @@ function addDefinition({ word, definition, userId }) {
       body: JSON.stringify({
         definition,
         userId,
+        authToken,
       })
     }
   )
@@ -55,7 +59,7 @@ function addDefinition({ word, definition, userId }) {
   })
 }
 
-function deleteDefinition({ word, definitionId, userId }) {
+function deleteDefinition({ word, definitionId, userId, authToken }) {
   return fetch(
     `${ENV.apiHost}/word/${word}/definition/${definitionId}/delete`, {
       method: 'POST',
@@ -65,6 +69,7 @@ function deleteDefinition({ word, definitionId, userId }) {
       },
       body: JSON.stringify({
         userId,
+        authToken,
       })
     }
   )
@@ -82,7 +87,7 @@ function deleteDefinition({ word, definitionId, userId }) {
   })
 }
 
-function addVote({ definitionId, userId, isUpvote}) {
+function addVote({ definitionId, isUpvote, userId, authToken}) {
   return fetch(
     `${ENV.apiHost}/definition/${definitionId}/vote`, {
       method: 'POST',
@@ -92,6 +97,7 @@ function addVote({ definitionId, userId, isUpvote}) {
       },
       body: JSON.stringify({
         userId,
+        authToken,
         isUpvote,
       })
     }

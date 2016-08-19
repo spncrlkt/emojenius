@@ -34,10 +34,10 @@ export function fetchWord(word) {
   };
 }
 
-export function addDefinition(word, definition, userId) {
+export function addDefinition(word, definition) {
   return {
     type: types.ADD_DEFINITION,
-    word, definition, userId,
+    word, definition,
   };
 }
 
@@ -48,17 +48,17 @@ export function addDefinitionSuccess({ word, definition, definitionId }) {
   };
 }
 
-export function deleteDefinition(word, definitionId, userId) {
+export function deleteDefinition(word, definitionId) {
   return {
     type: types.DELETE_DEFINITION,
-    word, definitionId, userId,
+    word, definitionId,
   };
 }
 
-export function addVote(word, definitionId, userId, isUpvote) {
+export function addVote(word, definitionId, isUpvote) {
   return {
     type: types.ADD_VOTE,
-    word, definitionId, userId, isUpvote,
+    word, definitionId, isUpvote,
   };
 }
 
