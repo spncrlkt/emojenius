@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
-
+import { withRouter } from 'react-router';
 
 import {
-  searchResults,
+  matchingWords,
+  matchingDefinitions,
 } from 'selectors/search';
 
 import {
   search,
 } from 'actions/search';
+
+import WordMatches from 'components/Search/WordMatches';
+import DefinitionMatches from 'components/Search/DefinitionMatches';
+
 
 class Search extends Component {
   constructor() {
@@ -34,6 +38,22 @@ class Search extends Component {
   }
 
   render() {
+    const {
+      matchingWords,
+      matchingDefinitions,
+      ...rest,
+    } = this.props;
+
+    /*
+      const defMatches = searchResults.matching_definitions.map((def) => {
+        return (
+          <div>
+            <a>{ def.word.title } - { def.definition }</a>
+          </div>
+        );
+      });
+   */
+
     return (
       <div>
         <h2>SEARCH</h2>
@@ -42,11 +62,12 @@ class Search extends Component {
           value={this.state.term}
           onChange={this.onChange}/>
         <button onClick={ this.onSearch }>search</button>
-        <div>
-          <pre>
-            { JSON.stringify(this.props.searchResults, null, 2) }
-          </pre>
-        </div>
+        <WordMatches
+          { ...rest }
+          matchingWords={ matchingWords }/>
+        <DefinitionMatches
+          { ...rest }
+          matchingDefinitions={ matchingDefinitions }/>
       </div>
     )
   }
@@ -54,7 +75,8 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return {
-    searchResults: searchResults(state),
+    matchingWords: matchingWords(state),
+    matchingDefinitions: matchingDefinitions(state),
   }
 }
 
@@ -67,4 +89,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search)
+)(withRouter(Search))

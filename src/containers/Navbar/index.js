@@ -42,7 +42,6 @@ class Navbar extends Component {
       router,
     } = this.props;
 
-    debugger;
     router.push('/admin');
   }
 

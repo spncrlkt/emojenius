@@ -12,6 +12,10 @@ import {
   SEARCH,
 } from 'constants/ActionTypes';
 
+import {
+  setError,
+} from 'actions/error';
+
 function* search(action) {
   try {
     const searchResults = yield call(searchApi.search, action.term);

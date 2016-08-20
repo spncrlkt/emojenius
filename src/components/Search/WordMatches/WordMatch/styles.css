@@ -1,0 +1,15 @@
+.pill {
+	font-size:26px;
+	font-weight:bold;
+	line-height:42px;
+	height: auto;
+	display:inline-block;
+	text-align:center;
+  margin: 10px;
+}
+
+.container {
+  cursor: pointer;
+	display:inline-block;
+  margin: 5px;
+}
