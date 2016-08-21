@@ -3,8 +3,7 @@
 ## todo
 
 ### short
-- [ ] search action
-- [ ] search results page (if found)
+- [ ] add page if no results found
 
 - [ ] order definitions by upvotes
 - [ ] landing page

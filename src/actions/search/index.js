@@ -16,6 +16,6 @@ export function loadSearchResults(searchResults) {
 
 export function clearSearchResults() {
   return {
-    type: types.LOAD_SEARCH_RESULTS,
+    type: types.CLEAR_SEARCH_RESULTS,
   };
 }

@@ -104,7 +104,7 @@ function mapDispatchToProps(dispatch) {
   return {
     logout: bindActionCreators(logout, dispatch),
     search: bindActionCreators(search, dispatch),
-    clearSearchResults: bindActionCreators(search, dispatch),
+    clearSearchResults: bindActionCreators(clearSearchResults, dispatch),
   }
 }
 
