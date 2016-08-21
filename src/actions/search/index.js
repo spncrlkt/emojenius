@@ -13,3 +13,9 @@ export function loadSearchResults(searchResults) {
     searchResults,
   };
 }
+
+export function clearSearchResults() {
+  return {
+    type: types.LOAD_SEARCH_RESULTS,
+  };
+}

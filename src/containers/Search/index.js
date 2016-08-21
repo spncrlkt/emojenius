@@ -8,35 +8,11 @@ import {
   matchingDefinitions,
 } from 'selectors/search';
 
-import {
-  search,
-} from 'actions/search';
-
 import WordMatches from 'components/Search/WordMatches';
 import DefinitionMatches from 'components/Search/DefinitionMatches';
 
 
 class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      term: '',
-    };
-  }
-
-  onChange = (event) => {
-    this.setState({
-      term: event.target.value,
-    });
-  }
-
-  onSearch = () => {
-    const {
-      search,
-    } = this.props;
-    search(this.state.term);
-  }
-
   render() {
     const {
       matchingWords,
@@ -44,24 +20,8 @@ class Search extends Component {
       ...rest,
     } = this.props;
 
-    /*
-      const defMatches = searchResults.matching_definitions.map((def) => {
-        return (
-          <div>
-            <a>{ def.word.title } - { def.definition }</a>
-          </div>
-        );
-      });
-   */
-
     return (
       <div>
-        <h2>SEARCH</h2>
-        <input
-          type="text"
-          value={this.state.term}
-          onChange={this.onChange}/>
-        <button onClick={ this.onSearch }>search</button>
         <WordMatches
           { ...rest }
           matchingWords={ matchingWords }/>
@@ -82,7 +42,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    search: bindActionCreators(search, dispatch),
   }
 }
 

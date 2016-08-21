@@ -26,6 +26,7 @@ export const ADD_VOTE_SUCCESS = 'ADD_VOTE_SUCCESS';
 /* SEARCH */
 export const SEARCH = 'SEARCH';
 export const LOAD_SEARCH_RESULTS = 'LOAD_SEARCH_RESULTS';
+export const CLER_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS';
 
 /* ERROR */
 export const SET_ERROR = 'SET_ERROR';

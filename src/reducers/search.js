@@ -1,5 +1,6 @@
 import {
   LOAD_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULTS,
 } from '../constants/ActionTypes'
 
 import { combineReducers } from 'redux-immutable'
@@ -14,6 +15,8 @@ function results(state=resultsInitialState, action) {
   switch (action.type) {
     case LOAD_SEARCH_RESULTS:
       return Immutable.fromJS(action.searchResults);
+    case CLEAR_SEARCH_RESULTS:
+      return resultsInitialState;
     default:
       return state;
   }
