@@ -7,6 +7,7 @@ import { combineReducers } from 'redux-immutable'
 import Immutable from 'immutable';
 
 const resultsInitialState = Immutable.Map({
+  isEmoji: null,
   matchingWords: Immutable.List([]),
   matchingDefinitions: Immutable.List([]),
 });

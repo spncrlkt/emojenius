@@ -9,6 +9,7 @@ export default class WordMatches extends Component {
       matchingWords,
       ...rest,
     } = this.props;
+
     const matches = matchingWords.map((word, index) =>
       <WordMatch
         { ...rest }

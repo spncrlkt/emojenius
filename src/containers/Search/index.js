@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import {
   matchingWords,
   matchingDefinitions,
+  isEmoji,
 } from 'selectors/search';
 
 import WordMatches from 'components/Search/WordMatches';
@@ -17,14 +18,27 @@ class Search extends Component {
     const {
       matchingWords,
       matchingDefinitions,
+      isEmoji,
       ...rest,
     } = this.props;
 
+    console.log('isEmoji');
+    console.log(isEmoji);
+
+    console.log('matchingWords.size');
+    console.log(matchingWords.size);
+
     return (
       <div>
-        <WordMatches
-          { ...rest }
-          matchingWords={ matchingWords }/>
+        { isEmoji && matchingWords.size == 0 ?
+          <h2> ADD NEW </h2>
+          :
+          <WordMatches
+            { ...rest }
+            matchingWords={ matchingWords }
+            isEmoji={ isEmoji }/>
+        }
+
         <DefinitionMatches
           { ...rest }
           matchingDefinitions={ matchingDefinitions }/>
@@ -37,6 +51,7 @@ function mapStateToProps(state) {
   return {
     matchingWords: matchingWords(state),
     matchingDefinitions: matchingDefinitions(state),
+    isEmoji: isEmoji(state),
   }
 }
 
