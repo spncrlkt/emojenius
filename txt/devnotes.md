@@ -3,10 +3,10 @@
 ## todo
 
 ### short
-- [ ] add page if no results found
-
 - [ ] order definitions by upvotes
 - [ ] landing page
+- [ ] logged out UX
+- [ ] no definitions yet UX
 
 - [ ] rm admin stuff
 - [ ] admin separate addDefinition

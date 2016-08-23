@@ -30,15 +30,10 @@ class Search extends Component {
 
     return (
       <div>
-        { isEmoji && matchingWords.size == 0 ?
-          <h2> ADD NEW </h2>
-          :
-          <WordMatches
-            { ...rest }
-            matchingWords={ matchingWords }
-            isEmoji={ isEmoji }/>
-        }
-
+        <WordMatches
+          { ...rest }
+          matchingWords={ matchingWords }
+          isEmoji={ isEmoji }/>
         <DefinitionMatches
           { ...rest }
           matchingDefinitions={ matchingDefinitions }/>

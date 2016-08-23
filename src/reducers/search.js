@@ -1,4 +1,5 @@
 import {
+  SEARCH,
   LOAD_SEARCH_RESULTS,
   CLEAR_SEARCH_RESULTS,
 } from '../constants/ActionTypes'
@@ -12,7 +13,9 @@ const resultsInitialState = Immutable.Map({
   matchingDefinitions: Immutable.List([]),
 });
 
-function results(state=resultsInitialState, action) {
+const termInitialState = '';
+
+function results(state = resultsInitialState, action) {
   switch (action.type) {
     case LOAD_SEARCH_RESULTS:
       return Immutable.fromJS(action.searchResults);
@@ -23,6 +26,17 @@ function results(state=resultsInitialState, action) {
   }
 }
 
+function term(state = termInitialState, action) {
+  switch (action.type) {
+    case SEARCH:
+      debugger;
+      return action.term;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   results,
+  term,
 })
