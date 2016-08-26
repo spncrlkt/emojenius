@@ -9,8 +9,9 @@ export default class Definitions extends Component {
       ...rest,
     } = this.props;
 
-    const renderedDefinitions = definitions.entrySeq().map(([i, definition]) => (
-      <Definition definition={ definition } key={i} { ...rest }/>
+    const renderedDefinitions = definitions && definitions.entrySeq().map(
+      ([i, definition]) => (
+        <Definition definition={ definition } key={i} { ...rest }/>
     ));
 
 

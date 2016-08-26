@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import {
   getSelectedWordData,
   getDefinitions,
+  userHasDefinition,
 } from 'selectors/word';
 
 import {
@@ -50,6 +51,7 @@ function mapStateToProps(state, props) {
     isLoggedIn: isLoggedIn(state),
     userId: userId(state),
     definitions: getDefinitions(state),
+    userHasDefinition: userHasDefinition(state),
   }
 }
 

@@ -1,3 +1,5 @@
+import Immutable from 'immutable';
+
 import { createSelector } from 'reselect'
 import {
   isLoggedIn,
@@ -11,7 +13,7 @@ export const getWords = (state) => state.getIn(['word', 'words'])
 export const getSelectedWordData = createSelector(
   [ getSelectedWord, getWords ],
   (selectedWord, words) => {
-    return words.get(selectedWord);
+    return words.get(selectedWord) || Immutable.Map({});
    }
 )
 
@@ -22,7 +24,6 @@ export const selectedWordDefinitions = createSelector(
     }
 )
 
-
 export const getDefinitions = createSelector(
   [ isLoggedIn, selectedWordDefinitions, votes, userDefinitions ],
   (isLoggedIn, selectedWordDefinitions, votes, userDefinitions) => {
@@ -30,7 +31,7 @@ export const getDefinitions = createSelector(
       return selectedWordDefinitions;
     }
     if (!selectedWordDefinitions) {
-      return [];
+      return Immutable.List([]);
     }
     const definitions = selectedWordDefinitions.map((definition) => {
       const vote = votes.get(definition.get('id').toString());
@@ -47,3 +48,18 @@ export const getDefinitions = createSelector(
     return definitions;
   }
 )
+
+export const userHasDefinition = createSelector(
+    [userDefinitions, getDefinitions],
+    (userDefinitions, definitions) => {
+      const userDefIds = userDefinitions.keySeq().toArray();
+      const defIds = definitions.map((def) => def.get('id').toString()).toJS();
+      for (let i = 0; i < userDefIds.length; i++) {
+        if (defIds.indexOf(userDefIds[i].toString()) != -1) {
+          return true;
+        }
+      }
+      return false;
+    }
+)
+

@@ -16,19 +16,25 @@ function words(state=Immutable.Map({}), action) {
       return state;
     case ADD_VOTE:
       return state.updateIn(
-        [action.word, 'definitions', action.definitionId.toString()],
-        (definition) => {
-          let upvotes = definition.get('upvotes');
-          let downvotes = definition.get('downvotes');
-          if (action.isUpvote) {
-            upvotes++;
-          } else {
-            downvotes++;
-          }
-          return definition.merge({
-            upvotes,
-            downvotes,
-          });
+        [action.word, 'definitions'],
+        (definitions) => {
+          const voteDefId = action.definitionId.toString();
+          return definitions.update(
+            definitions.findIndex((def) => def.get('id') === voteDefId),
+            (definition) => {
+              let upvotes = definition.get('upvotes');
+              let downvotes = definition.get('downvotes');
+              if (action.isUpvote) {
+                upvotes++;
+              } else {
+                downvotes++;
+              }
+              return definition.merge({
+                upvotes,
+                downvotes,
+              });
+            }
+          )
         }
       );
     default:

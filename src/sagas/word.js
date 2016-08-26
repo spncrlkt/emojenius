@@ -86,6 +86,10 @@ function* deleteDefinition(action) {
   try {
     yield call(wordApi.deleteDefinition, action);
     yield put(fetchWordAction(action.word));
+
+    const userId = yield select(selectUserId);
+    const authToken = yield select(selectAuthToken);
+    yield put(fetchUser(userId, authToken));
   }
   catch (error) {
     yield put(setError(error.message));
@@ -113,9 +117,10 @@ export function* watchAddVote() {
 
 function* addVoteSuccess() {
   const selectedWord = yield select(getSelectedWord);
+  yield put(fetchWordAction(selectedWord));
+
   const userId = yield select(selectUserId);
   const authToken = yield select(selectAuthToken);
-  yield put(fetchWordAction(selectedWord));
   yield put(fetchUser(userId, authToken));
 }
 
