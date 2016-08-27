@@ -6,6 +6,7 @@ import search from './search';
 import user from './user';
 import word from './word';
 import error from './error';
+import home from './home';
 
 export default combineReducers({
   admin,
@@ -13,4 +14,5 @@ export default combineReducers({
   user,
   word,
   error,
+  home,
 })

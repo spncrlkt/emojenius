@@ -10,6 +10,10 @@ export const LOAD_WORDS = 'LOAD_WORDS';
 export const FETCH_USERS = 'FETCH_USERS';
 export const LOAD_USERS = 'LOAD_USERS';
 
+/* HOME */
+export const FETCH_HOME = 'FETCH_HOME';
+export const LOAD_HOME = 'LOAD_HOME';
+
 /* WORD */
 export const ADD_WORD = 'ADD_WORD';
 export const WORD_ADDED = 'WORD_ADDED';

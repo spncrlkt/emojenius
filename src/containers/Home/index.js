@@ -4,52 +4,62 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router';
 
 import {
-  matchingWords,
-  matchingDefinitions,
-  isEmoji,
-} from 'selectors/search';
+  newWords,
+  newDefs,
+} from 'selectors/home';
+
+import {
+  fetchHome,
+} from 'actions/home';
 
 import WordMatches from 'components/Search/WordMatches';
 import DefinitionMatches from 'components/Search/DefinitionMatches';
 
+class Home extends Component {
+  componentDidMount() {
+    const {
+      fetchHome,
+    } = this.props;
 
-class Search extends Component {
+    fetchHome();
+  }
+
   render() {
     const {
-      matchingWords,
-      matchingDefinitions,
-      isEmoji,
+      newWords,
+      newDefs,
       ...rest,
     } = this.props;
 
     return (
       <div>
+        <span><h2>RECENTLY ADDED EMOJI</h2></span>
         <WordMatches
           { ...rest }
-          matchingWords={ matchingWords }
-          isEmoji={ isEmoji }/>
+          matchingWords={ newWords }/>
+        <span><h2>RECENTLY ADDED DEFINITIONS</h2></span>
         <DefinitionMatches
           { ...rest }
-          matchingDefinitions={ matchingDefinitions }/>
+          matchingDefinitions={ newDefs }/>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    matchingWords: matchingWords(state),
-    matchingDefinitions: matchingDefinitions(state),
-    isEmoji: isEmoji(state),
+    newWords: newWords(state),
+    newDefs: newDefs(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    fetchHome: bindActionCreators(fetchHome, dispatch),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Search))
+)(withRouter(Home))

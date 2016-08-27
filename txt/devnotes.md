@@ -3,12 +3,16 @@
 ## todo
 
 ### short
-- [ ] landing page
+- [ ] search results 'p' doesnt match 'ppp'
+
 - [ ] rm admin stuff
-- [ ] npm build
 - [ ] nginx container
+
+- [ ] npm build
 - [ ] deploy
 - [ ] set namecheap dns to ec2 container
+
+- [ ] limit twitter perms
 
 ### medium
 - [ ] backups

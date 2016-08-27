@@ -25,6 +25,10 @@ import {
   watchSearch,
 } from './search';
 
+import {
+  watchFetchHome,
+} from './home';
+
 export default function* rootSaga() {
   yield [
     watchFetchWords(),
@@ -42,5 +46,6 @@ export default function* rootSaga() {
     watchLogout(),
     watchCheckUserSession(),
     watchSearch(),
+    watchFetchHome(),
   ]
 }
