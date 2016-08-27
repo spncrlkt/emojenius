@@ -27,7 +27,7 @@ export default class Definition extends Component {
         <CardText>
           { definitionTxt }
         </CardText>
-        { isLoggedIn && <ActionBar { ...this.props }/> }
+        <ActionBar { ...this.props }/>
       </Card>
     )
   }

@@ -4,7 +4,6 @@
 
 ### short
 - [ ] landing page
-- [ ] logged out UX
 - [ ] about
 
 - [ ] rm admin stuff

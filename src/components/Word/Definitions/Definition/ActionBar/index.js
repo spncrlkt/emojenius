@@ -16,8 +16,31 @@ export default class ActionBar extends Component {
     };
   }
 
-  handleUpvote = () => this.handleVote(true)
-  handleDownvote = () => this.handleVote(false)
+  handleUpvote = () => {
+    const {
+      isLoggedIn,
+      onSignIn,
+    } = this.props;
+
+    if (isLoggedIn) {
+      this.handleVote(true)
+    } else {
+      onSignIn();
+    }
+  }
+
+  handleDownvote = () => {
+    const {
+      isLoggedIn,
+      onSignIn,
+    } = this.props;
+
+    if (isLoggedIn) {
+      this.handleVote(false)
+    } else {
+      onSignIn();
+    }
+  }
 
   handleVote = (isUpvote) => {
     const {
