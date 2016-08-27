@@ -4,12 +4,6 @@ export const LOGOUT = 'LOGOUT';
 export const FETCH_USER = 'FETCH_USER';
 export const CHECK_USER_SESSION = 'CHECK_USER_SESSION'
 
-/* ADMIN */
-export const FETCH_WORDS = 'FETCH_WORDS';
-export const LOAD_WORDS = 'LOAD_WORDS';
-export const FETCH_USERS = 'FETCH_USERS';
-export const LOAD_USERS = 'LOAD_USERS';
-
 /* HOME */
 export const FETCH_HOME = 'FETCH_HOME';
 export const LOAD_HOME = 'LOAD_HOME';

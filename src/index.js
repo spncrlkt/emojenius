@@ -20,8 +20,6 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import App from './containers/App'
 
-import Admin from './containers/Admin'
-
 import Home from './containers/Home';
 import Search from './containers/Search'
 import Login from './containers/Login'
@@ -48,7 +46,6 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
-        <Route path="admin" component={Admin}/>
         <Route path="search" component={Search}/>
         <Route path="login/:userId/:authToken/:next" component={Login}/>
         <Route path="word/:title" component={Word}/>

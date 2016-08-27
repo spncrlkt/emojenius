@@ -3,11 +3,7 @@
 ## todo
 
 ### short
-- [ ] search results 'p' doesnt match 'ppp'
-
-- [ ] rm admin stuff
 - [ ] nginx container
-
 - [ ] npm build
 - [ ] deploy
 - [ ] set namecheap dns to ec2 container

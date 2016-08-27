@@ -44,14 +44,6 @@ class Navbar extends Component {
     logout();
   }
 
-  navAdmin = () => {
-    const {
-      router,
-    } = this.props;
-
-    router.push('/admin');
-  }
-
   render() {
     const {
       isLoggedIn,
@@ -79,9 +71,6 @@ class Navbar extends Component {
                 onTouchTap={ this.onSignIn }
                 />
             }
-            <MenuItem
-              primaryText="ADMIN"
-              onTouchTap={ this.navAdmin }/>
           </IconMenu>
         }
         children= {[

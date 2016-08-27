@@ -1,11 +1,4 @@
 import {
-  watchFetchWords,
-  watchWordAdded,
-  watchAddDefinitionSuccess as adminWatchAddDefinitionSuccess,
-  watchFetchUsers,
-} from './admin';
-
-import {
   watchAddWord,
   watchFetchWord,
   watchAddDefinition,
@@ -31,10 +24,6 @@ import {
 
 export default function* rootSaga() {
   yield [
-    watchFetchWords(),
-    watchWordAdded(),
-    adminWatchAddDefinitionSuccess(),
-    watchFetchUsers(),
     watchAddWord(),
     watchFetchWord(),
     watchAddDefinition(),
