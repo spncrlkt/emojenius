@@ -29,7 +29,6 @@ function results(state = resultsInitialState, action) {
 function term(state = termInitialState, action) {
   switch (action.type) {
     case SEARCH:
-      debugger;
       return action.term;
     default:
       return state;

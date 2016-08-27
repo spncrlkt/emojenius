@@ -60,7 +60,7 @@ class Navbar extends Component {
 
     return (
       <AppBar
-        title="EMOJI"
+        title="EMOJENI.US"
         iconElementLeft={
           <IconMenu
             iconButtonElement={

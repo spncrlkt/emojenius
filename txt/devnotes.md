@@ -3,7 +3,6 @@
 ## todo
 
 ### short
-- [ ] update header to emojeni.us
 - [ ] landing page
 - [ ] rm admin stuff
 - [ ] npm build
