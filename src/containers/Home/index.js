@@ -33,11 +33,11 @@ class Home extends Component {
 
     return (
       <div>
-        <span><h2>RECENTLY ADDED EMOJI</h2></span>
+        <h2 style={{ textAlign: 'center'}}>🆕 EMOJI 🆕</h2>
         <WordMatches
           { ...rest }
           matchingWords={ newWords }/>
-        <span><h2>RECENTLY ADDED DEFINITIONS</h2></span>
+        <h2 style={{ textAlign: 'center'}}>🆕 DEFINITIONS 🆕</h2>
         <DefinitionMatches
           { ...rest }
           matchingDefinitions={ newDefs }/>
