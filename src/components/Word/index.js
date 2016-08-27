@@ -4,6 +4,7 @@ import Header from 'components/Word/Header';
 import Definitions from './Definitions';
 
 export default class Word extends Component {
+
   render() {
     const {
       word,

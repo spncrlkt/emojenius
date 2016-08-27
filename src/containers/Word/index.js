@@ -25,6 +25,14 @@ import WordComponent from 'components/Word';
 
 class Word extends Component {
 
+  onSignIn = () => {
+    const signInURL = ENV.apiHost +
+      '/login?next=' +
+      encodeURIComponent(window.location);
+
+    window.location.assign(signInURL);
+  }
+
   componentDidMount() {
     const {
       fetchWord,
@@ -39,7 +47,7 @@ class Word extends Component {
   render() {
     return (
       <div>
-        <WordComponent { ...this.props }/>
+        <WordComponent { ...this.props } onSignIn={ this.onSignIn }/>
       </div>
     )
   }

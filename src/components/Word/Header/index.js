@@ -3,6 +3,8 @@ import Paper from 'material-ui/lib/paper';
 
 import styles from './styles.css';
 
+import LoginHeader from './LoginHeader';
+
 import AddDefinition from './AddDefinition';
 
 export default class Header extends Component {
@@ -20,10 +22,11 @@ export default class Header extends Component {
           <Paper zDepth={ 2 }>
             <div className={ styles.container }>
               <span
-                className={ styles.cursor }>
+                className={ styles.header }>
                 <h2>{ params.title }</h2>
               </span>
               { isLoggedIn && !userHasDefinition && <AddDefinition { ...this.props }/> }
+              { !isLoggedIn && <LoginHeader { ...this.props }/> }
             </div>
           </Paper>
         </div>

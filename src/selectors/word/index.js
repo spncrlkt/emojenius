@@ -53,10 +53,12 @@ export const userHasDefinition = createSelector(
     [userDefinitions, getDefinitions],
     (userDefinitions, definitions) => {
       const userDefIds = userDefinitions.keySeq().toArray();
-      const defIds = definitions.map((def) => def.get('id').toString()).toJS();
-      for (let i = 0; i < userDefIds.length; i++) {
-        if (defIds.indexOf(userDefIds[i].toString()) != -1) {
-          return true;
+      if (definitions) {
+        const defIds = definitions.map((def) => def.get('id').toString()).toJS();
+        for (let i = 0; i < userDefIds.length; i++) {
+          if (defIds.indexOf(userDefIds[i].toString()) != -1) {
+            return true;
+          }
         }
       }
       return false;

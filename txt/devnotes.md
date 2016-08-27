@@ -5,7 +5,6 @@
 ### short
 - [ ] landing page
 - [ ] logged out UX
-- [ ] no definitions yet UX
 - [ ] about
 
 - [ ] rm admin stuff
