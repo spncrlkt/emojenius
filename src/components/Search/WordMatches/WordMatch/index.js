@@ -24,9 +24,9 @@ export default class WordMatch extends Component {
     const title = word.get('title');
 
     return (
-      <div className={ styles.container }>
+      <div className={ styles.container } onClick={ this.handlePillClick }>
         <Paper>
-          <span onClick={ this.handlePillClick } className={ styles.pill }>
+          <span className={ styles.pill }>
             <a >{ title }</a>
           </span>
         </Paper>

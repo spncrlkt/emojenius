@@ -4,6 +4,7 @@
   "description": "emojenius",
   "scripts": {
     "start": "node server.js",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack --progress --config webpack.config.prod.js -p",
     "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register",
     "test:watch": "npm test -- --watch"
   },

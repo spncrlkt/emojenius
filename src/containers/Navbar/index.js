@@ -44,15 +44,34 @@ class Navbar extends Component {
     logout();
   }
 
+  handleHomeNavigation = () => {
+    const {
+      router,
+    } = this.props;
+    router.push('/');
+  }
+
   render() {
     const {
       isLoggedIn,
       ...rest,
     } = this.props;
 
+    const styles = {
+      title: {
+        cursor: 'pointer',
+      },
+    };
+
     return (
       <AppBar
-        title="EMOJENI.US"
+        title={
+          <span
+            style={styles.title}
+            onTouchTap={this.handleHomeNavigation}>
+            EMOJENI.US
+          </span>
+        }
         iconElementLeft={
           <IconMenu
             iconButtonElement={
